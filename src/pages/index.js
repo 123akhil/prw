@@ -6,9 +6,8 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>PRW</title>
       </Head>
-      <h1>Hello there lets create product review website</h1>
       {/* Header */}
       <Header />
       {/* ProductFeed */}
