@@ -1,11 +1,19 @@
 import { ShoppingCartIcon, SearchIcon } from "@heroicons/react/outline";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+
 function Header() {
+  const { data: session } = useSession();
+  const router = useRouter();
   return (
     <div className="shadow-md border-b bg-white sticky top-0 z-50">
       <div className="flex items-center bg-white ml-2 p-1 py-2">
         <div>
           {/* HeaderLeft */}
-          <h1 className="text-xl flex items-center font-bold m-2  md:text-2xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-pink-500">
+          <h1
+            onClick={() => router.push("/")}
+            className="text-xl flex items-center font-bold m-2  md:text-2xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-pink-500 cursor-pointer "
+          >
             CASDM
           </h1>
         </div>
@@ -22,11 +30,17 @@ function Header() {
         </div>
         {/* right */}
         <div className="flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
-          <div className="cursor-pointer hover:underline">
-            <p>Hello Akhil chaudhary</p>
+          <div
+            onClick={!session ? signIn : signOut}
+            className="cursor-pointer hover:underline"
+          >
+            <p>{session ? `Hello, ${session.user.name}` : "Sign In"}</p>
             <p className="font-extrabold md:text-sm">Account & Lists</p>
           </div>
-          <div className="relative cursor-pointer hover:underline flex items-center">
+          <div
+            onClick={() => router.push("/checkout")}
+            className="relative cursor-pointer hover:underline flex items-center"
+          >
             <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-pink-500 text-center rounded-full text-white font-bold">
               2
             </span>
