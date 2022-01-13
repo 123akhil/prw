@@ -1,10 +1,14 @@
 import { ShoppingCartIcon, SearchIcon } from "@heroicons/react/outline";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { selectItems } from "../slices/basketSlice";
 
 function Header() {
   const { data: session } = useSession();
   const router = useRouter();
+  const items = useSelector(selectItems);
+
   return (
     <div className="shadow-md border-b bg-white sticky top-0 z-50">
       <div className="flex items-center bg-white ml-2 p-1 py-2">
@@ -42,7 +46,7 @@ function Header() {
             className="relative cursor-pointer hover:underline flex items-center"
           >
             <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-pink-500 text-center rounded-full text-white font-bold">
-              2
+              {items.length}
             </span>
             <ShoppingCartIcon className="h-9 text-black" />
             <p className="hidden md:inline font-extrabold md:text-sm mt-2">
