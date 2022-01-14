@@ -3,7 +3,7 @@ import Product from "./Product";
 function ProductFeed({ products }) {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {products.map(
+      {products.length > 0 ? products.map(
         ({ id, title, price, description, category, image, rating }) => (
           <Product
             key={id}
@@ -16,7 +16,7 @@ function ProductFeed({ products }) {
             rating={rating}
           />
         )
-      )}
+      ) : "No Products available"}
     </div>
   );
 }

@@ -1,14 +1,18 @@
 import { ShoppingCartIcon, SearchIcon } from "@heroicons/react/outline";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
 
-function Header() {
+function Header(props) {
+  const input = useRef("");
   const { data: session } = useSession();
   const router = useRouter();
   const items = useSelector(selectItems);
-
+  const getSearchTerm = () => {
+    props.searchKeyword(input.current.value);
+  };
   return (
     <div className="shadow-md border-b bg-white sticky top-0 z-50">
       <div className="flex items-center bg-white ml-2 p-1 py-2">
@@ -30,6 +34,9 @@ function Header() {
             className="flex-grow bg-gray-50 py-2 px-2 h-full pl-10 sm-text-sm ring-1 ring-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-300 hover:ring-1 hover:ring-pink-300"
             type="text"
             placeholder="Search"
+            value={props.term}
+            onChange={getSearchTerm}
+            ref={input}
           />
         </div>
         {/* right */}
