@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
 
 export default function Home({ products }) {
+  const [searchVisiblity, setSearchVisiblity] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const searchHandler = (searchTerm) => {

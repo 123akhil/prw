@@ -4,15 +4,16 @@ import Header from "../components/Header";
 import { selectItems, selectTotal } from "../slices/basketSlice";
 import Currency from "react-currency-formatter";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 function Checkout() {
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
-
+  const searchVisiblity = useState(true);
   const { data: session } = useSession();
   return (
     <div className="bg-gray-100">
-      <Header />
+      <Header searchVisiblity={searchVisiblity} />
       <main className="lg:flex max-w-screen-2xl mx-auto">
         {/* left */}
         <div className="flex-grow m-5 shadow-sm">

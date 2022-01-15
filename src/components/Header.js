@@ -30,8 +30,8 @@ function Header(props) {
           <div className="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
             <SearchIcon className="h-5 w-5 text-pink-500 " />
           </div>
-          <input
-            className="flex-grow bg-gray-50 py-2 px-2 h-full pl-10 sm-text-sm ring-1 ring-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-300 hover:ring-1 hover:ring-pink-300"
+          <input disabled={props.searchVisiblity}
+            className="flex-grow bg-gray-50 py-2 px-2 h-full pl-10 sm-text-sm ring-1 ring-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-300 hover:ring-1 hover:ring-pink-300 "
             type="text"
             placeholder="Search"
             value={props.term}

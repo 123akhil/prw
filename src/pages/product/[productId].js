@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header";
 import ProductCard from "../../components/ProductCard";
-import { useRef } from "react";
+
 
 const ProductDetails = ({
   id,
@@ -12,18 +12,11 @@ const ProductDetails = ({
   image,
   rating,
 }) => {
-  const topPageRef = useRef(null);
-
-  const scrollToTop = () => {
-    topPageRef.current.scrollIntoView({
-      behaviour: "smooth",
-      block: "start",
-    });
-  };
+  const searchVisiblity = useState(true);
 
   return (
-    <div ref={topPageRef} >
-      <Header />
+    <div >
+      <Header searchVisiblity={searchVisiblity} />
       <ProductCard
         id={id}
         title={title}

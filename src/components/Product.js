@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 function Product({ id, title, price, description, category, image, rating }) {
   const dispatch = useDispatch();
   const router = useRouter();
-
   const addItemToBasket = () => {
     const product = {
       id,
